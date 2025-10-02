@@ -180,9 +180,16 @@ export default function Index() {
                     Приглашенный должен забрать бесплатную энергию за вход
                   </span>
                 </a>
-                {' '}и выигрывай энергию, итоги через <span className="inline-block min-w-[2px] font-medium">{timeLeft}</span>
+                {' '}и выигрывай энергию
               </p>
             </div>
+          </div>
+
+          <div className="text-center mb-6">
+            <h2 className="text-lg md:text-xl font-medium text-white/90">
+              Лидерборд, итоги через{' '}
+              <span className="inline-block font-bold text-white">{timeLeft}</span>
+            </h2>
           </div>
 
           {participants.length === 0 ? (
