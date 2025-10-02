@@ -106,9 +106,20 @@ export default function Index() {
       <div className="relative z-40 min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-2xl">
           <div className="text-center mb-8">
-            <h1 className="text-2xl md:text-4xl font-semibold mb-3 tracking-tight text-white/90">
-              Празднуем <span className="text-white font-bold">1000</span> вайбкодеров
+            <h1 className="text-lg md:text-2xl font-medium mb-2 tracking-tight text-white/60">
+              Лидерборд poehali.dev
             </h1>
+            <p className="text-xl md:text-3xl font-semibold text-white/90 mb-3">
+              Празднуем <span className="text-white font-bold">1000</span> вайбкодеров в{' '}
+              <a 
+                href="https://t.me/+-Lwo9EkIwNc4YjIy" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white/90 hover:text-white underline decoration-white/30 hover:decoration-white/60 transition-colors"
+              >
+                сообществе
+              </a>
+            </p>
             <p className="text-sm md:text-base text-white/40">Пригласи друзей · До 14 октября</p>
           </div>
 
