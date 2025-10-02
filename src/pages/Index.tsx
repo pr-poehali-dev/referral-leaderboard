@@ -143,7 +143,7 @@ export default function Index() {
                 rel="noopener noreferrer"
                 className="text-white/60 hover:text-white/80 underline decoration-white/30 hover:decoration-white/50 transition-colors"
               >
-                нашем сообществе
+                нашем сообществе в Телеграм
               </a>
             </p>
           </div>
@@ -167,7 +167,8 @@ export default function Index() {
                   href="http://poehali.dev/?show=free" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-white/60 hover:text-white/80 underline decoration-white/30 hover:decoration-white/50 transition-colors"
+                  className="hover:opacity-80 transition-opacity"
+                  style={{ color: '#fbb040' }}
                 >
                   Приглашай друзей
                 </a>
