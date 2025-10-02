@@ -46,6 +46,8 @@ export default function Index() {
     return () => clearInterval(interval);
   }, []);
 
+  const [timeUnits, setTimeUnits] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
   useEffect(() => {
     const calculateTimeLeft = () => {
       const endDate = new Date('2025-10-14T23:59:59');
@@ -54,6 +56,7 @@ export default function Index() {
 
       if (difference <= 0) {
         setTimeLeft('Конкурс завершён');
+        setTimeUnits({ days: 0, hours: 0, minutes: 0, seconds: 0 });
         return;
       }
 
@@ -63,6 +66,7 @@ export default function Index() {
       const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
       setTimeLeft(`${days}д ${hours}ч ${minutes}м ${seconds}с`);
+      setTimeUnits({ days, hours, minutes, seconds });
     };
 
     calculateTimeLeft();
@@ -185,12 +189,26 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-2 md:gap-3 mb-6">
-            <span className="text-xl md:text-2xl">👇🏼</span>
-            <h2 className="text-sm md:text-xl font-medium text-white/90">
-              Лидерборд, итоги через{' '}
-              <span className="inline-block font-bold text-white">{timeLeft}</span>
-            </h2>
+          <div className="flex flex-col items-center gap-3 mb-6">
+            <div className="flex items-center gap-2">
+              <span className="text-xl md:text-2xl">👇🏼</span>
+              <h2 className="text-sm md:text-xl font-medium text-white/90">
+                Лидерборд, итоги через
+              </h2>
+            </div>
+            <div className="flex gap-2">
+              {[
+                { value: timeUnits.days, label: 'дней' },
+                { value: timeUnits.hours, label: 'часов' },
+                { value: timeUnits.minutes, label: 'минут' },
+                { value: timeUnits.seconds, label: 'секунд' }
+              ].map((unit, i) => (
+                <div key={i} className="backdrop-blur-xl bg-white/5 rounded-lg border border-white/10 px-3 py-2 min-w-[60px] text-center">
+                  <div className="text-xl md:text-2xl font-bold text-white font-mono">{String(unit.value).padStart(2, '0')}</div>
+                  <div className="text-[10px] md:text-xs text-white/40 mt-0.5">{unit.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {participants.length === 0 ? (
