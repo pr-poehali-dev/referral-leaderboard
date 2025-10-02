@@ -152,7 +152,7 @@ export default function Index() {
       <div className="relative z-40 min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-xl">
           <div className="text-center mb-8">
-            <h1 className="text-adaptive-hero font-semibold text-white/90 mb-2 leading-tight mt-5">
+            <h1 className="text-adaptive-hero font-semibold text-white/90 mb-2 leading-tight md:mt-12">
               Разыгрываем <span className="text-white font-bold">15 000</span> энергии
             </h1>
             <p className="text-base md:text-lg text-white/50">
