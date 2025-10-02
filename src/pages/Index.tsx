@@ -209,13 +209,6 @@ export default function Index() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-1.5">
-                        <Icon name="UsersRound" size={16} className="text-white/60" />
-                        <span className="text-lg font-semibold text-white/90 tabular-nums">
-                          {participant.claimed_referrals}
-                        </span>
-                      </div>
-
                       {hasPending && (
                         <div className="relative group">
                           <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-white/5 border border-white/10">
@@ -224,11 +217,18 @@ export default function Index() {
                               +{pendingCount}
                             </span>
                           </div>
-                          <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-black/90 text-white/90 text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-xl border border-white/10 z-50">
+                          <div className="absolute top-full left-0 mt-2 px-3 py-2 bg-black/90 text-white/90 text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-xl border border-white/10 z-50">
                             Ожидают: рефералу нужно забрать бесплатную энергию
                           </div>
                         </div>
                       )}
+
+                      <div className="flex items-center gap-1.5">
+                        <Icon name="UsersRound" size={16} className="text-white/60" />
+                        <span className="text-lg font-semibold text-white/90 tabular-nums">
+                          {participant.claimed_referrals}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 );
