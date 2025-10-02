@@ -197,7 +197,7 @@ export default function Index() {
                 { value: timeUnits.minutes, label: 'минут' },
                 { value: timeUnits.seconds, label: 'секунд' }
               ].map((unit, i) => (
-                <div key={i} className="backdrop-blur-xl bg-white/5 rounded-lg border border-white/10 px-3 py-2 min-w-[60px] text-center">
+                <div key={i} className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 w-16 h-16 md:w-20 md:h-20 flex flex-col items-center justify-center">
                   <div className="text-xl md:text-2xl font-bold text-white font-mono">{String(unit.value).padStart(2, '0')}</div>
                   <div className="text-[10px] md:text-xs text-white/40 mt-0.5">{unit.label}</div>
                 </div>
