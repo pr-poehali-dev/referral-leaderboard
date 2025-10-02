@@ -94,12 +94,33 @@ export default {
 						opacity: '1',
 						transform: 'translateY(0)'
 					}
+				},
+				gradientShift: {
+					'0%': {
+						backgroundPosition: '0% 0%'
+					},
+					'20%': {
+						backgroundPosition: '20% 40%'
+					},
+					'40%': {
+						backgroundPosition: '60% 20%'
+					},
+					'60%': {
+						backgroundPosition: '40% 80%'
+					},
+					'80%': {
+						backgroundPosition: '80% 60%'
+					},
+					'100%': {
+						backgroundPosition: '100% 100%'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'fade-in': 'fade-in 1.5s ease-out'
+				'fade-in': 'fade-in 1.5s ease-out',
+				'gradient-shift': 'gradientShift 60s ease-in-out infinite alternate'
 			},
 			transitionDuration: {
 				'2000': '2000ms',
