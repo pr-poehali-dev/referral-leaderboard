@@ -148,7 +148,7 @@ export default function Index() {
                   Приглашенный должен забрать бесплатную энергию за вход
                 </span>
               </a>
-              {' '}и выигрывай энергию · Итоги через {timeLeft}
+              {' '}и выигрывай энергию · Итоги через <span className="inline-block min-w-[2px]">{timeLeft}</span>
             </p>
           </div>
 
