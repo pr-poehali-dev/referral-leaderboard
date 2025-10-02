@@ -42,16 +42,13 @@ export default function Index() {
   }, []);
 
   useEffect(() => {
-    const contentTimer = setTimeout(() => {
-      setShowContent(true);
-    }, 500);
+    setShowContent(true);
 
     const gradientTimer = setTimeout(() => {
       setShowGradient(true);
     }, 3000);
 
     return () => {
-      clearTimeout(contentTimer);
       clearTimeout(gradientTimer);
     };
   }, []);
