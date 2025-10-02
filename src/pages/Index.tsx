@@ -79,12 +79,13 @@ export default function Index() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-black">
-      <div 
-        className="absolute inset-0 gradient-bg pointer-events-none"
-        style={{ opacity: gradientOpacity }}
-      />
-      
+    <div 
+      className="min-h-screen relative overflow-hidden"
+      style={{ 
+        background: `linear-gradient(135deg, rgba(139, 92, 246, ${gradientOpacity}) 0%, rgba(59, 130, 246, ${gradientOpacity}) 25%, rgba(251, 146, 60, ${gradientOpacity}) 50%, rgba(234, 88, 12, ${gradientOpacity}) 75%, rgba(139, 92, 246, ${gradientOpacity}) 100%)`,
+        backgroundColor: '#000'
+      }}
+    >
       {!hideShader && (
         <div className="absolute inset-0 z-30 pointer-events-none">
           <ShaderAnimation />
