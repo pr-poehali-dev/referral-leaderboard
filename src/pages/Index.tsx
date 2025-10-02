@@ -79,13 +79,22 @@ export default function Index() {
   }
 
   return (
-    <div 
-      className="min-h-screen relative overflow-hidden"
-      style={{ 
-        background: `linear-gradient(135deg, rgba(139, 92, 246, ${gradientOpacity}) 0%, rgba(59, 130, 246, ${gradientOpacity}) 25%, rgba(251, 146, 60, ${gradientOpacity}) 50%, rgba(234, 88, 12, ${gradientOpacity}) 75%, rgba(139, 92, 246, ${gradientOpacity}) 100%)`,
-        backgroundColor: '#000'
-      }}
-    >
+    <div className="min-h-screen relative overflow-hidden bg-black">
+      <div 
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: `
+            radial-gradient(circle at 20% 30%, rgba(251, 0, 0, ${0.18 * gradientOpacity}) 0%, transparent 30%),
+            radial-gradient(circle at 80% 20%, rgba(255, 193, 7, ${0.16 * gradientOpacity}) 0%, transparent 30%),
+            radial-gradient(circle at 40% 80%, rgba(76, 175, 80, ${0.15 * gradientOpacity}) 0%, transparent 35%),
+            radial-gradient(circle at 90% 70%, rgba(0, 35, 218, ${0.14 * gradientOpacity}) 0%, transparent 25%),
+            radial-gradient(circle at 10% 50%, rgba(255, 196, 0, ${0.13 * gradientOpacity}) 0%, transparent 20%),
+            radial-gradient(circle at 70% 90%, rgba(255, 235, 59, ${0.15 * gradientOpacity}) 0%, transparent 28%),
+            radial-gradient(circle at 60% 10%, rgba(233, 30, 99, ${0.12 * gradientOpacity}) 0%, transparent 22%)
+          `,
+          backgroundSize: '200% 200%'
+        }}
+      />
       {!hideShader && (
         <div className="absolute inset-0 z-30 pointer-events-none">
           <ShaderAnimation />
