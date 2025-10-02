@@ -29,7 +29,27 @@ export default function Index() {
         const response = await fetch('https://devapi.arnld.ai/api/minigames/referral-contest');
         const data = await response.json();
         const sorted = data.sort((a: Participant, b: Participant) => b.claimed_referrals - a.claimed_referrals);
-        setParticipants(sorted.slice(0, 9));
+        
+        const mockData: Participant[] = [
+          ...sorted,
+          { profile_id: 'mock1', full_name: 'Александр Смирнов', username: 'asmirnov', total_referrals: 45, claimed_referrals: 45 },
+          { profile_id: 'mock2', full_name: 'Елена Кузнецова', username: 'ekuznetsova', total_referrals: 38, claimed_referrals: 38 },
+          { profile_id: 'mock3', full_name: 'Дмитрий Попов', username: 'dpopov', total_referrals: 32, claimed_referrals: 32 },
+          { profile_id: 'mock4', full_name: 'Мария Волкова', username: 'mvolkova', total_referrals: 28, claimed_referrals: 28 },
+          { profile_id: 'mock5', full_name: 'Иван Соколов', username: 'isokolov', total_referrals: 25, claimed_referrals: 25 },
+          { profile_id: 'mock6', full_name: 'Анна Новикова', username: 'anovikova', total_referrals: 22, claimed_referrals: 22 },
+          { profile_id: 'mock7', full_name: 'Петр Морозов', username: 'pmorozov', total_referrals: 18, claimed_referrals: 18 },
+          { profile_id: 'mock8', full_name: 'Светлана Петрова', username: 'spetrova', total_referrals: 15, claimed_referrals: 15 },
+          { profile_id: 'mock9', full_name: 'Алексей Лебедев', username: 'alebedev', total_referrals: 12, claimed_referrals: 12 },
+          { profile_id: 'mock10', full_name: 'Ольга Сидорова', username: 'osidorova', total_referrals: 10, claimed_referrals: 10 },
+          { profile_id: 'mock11', full_name: 'Михаил Зайцев', username: 'mzaytsev', total_referrals: 8, claimed_referrals: 8 },
+          { profile_id: 'mock12', full_name: 'Татьяна Григорьева', username: 'tgrigorieva', total_referrals: 6, claimed_referrals: 6 },
+          { profile_id: 'mock13', full_name: 'Сергей Федоров', username: 'sfedorov', total_referrals: 5, claimed_referrals: 5 },
+          { profile_id: 'mock14', full_name: 'Наталья Козлова', username: 'nkozlova', total_referrals: 4, claimed_referrals: 4 },
+          { profile_id: 'mock15', full_name: 'Владимир Васильев', username: 'vvasiliev', total_referrals: 3, claimed_referrals: 3 },
+        ];
+        
+        setParticipants(mockData);
       } catch (error) {
         console.error('Failed to fetch leaderboard:', error);
       } finally {
@@ -217,7 +237,7 @@ export default function Index() {
 
         <footer className="relative z-40 mt-12 pb-8">
           <div className="flex items-center justify-center gap-2 text-white/40 text-sm">
-            <Icon name="Package" size={18} className="text-white/40" />
+            <Icon name="Box" size={18} className="text-white/40" />
             <p>
               Сайт собран за 15 минут на{' '}
               <a 
