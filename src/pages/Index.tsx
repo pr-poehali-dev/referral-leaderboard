@@ -187,12 +187,10 @@ export default function Index() {
 
           <div className="flex items-center justify-center gap-3 mb-6">
             <span className="text-2xl">👇🏼</span>
-            <div className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-6 py-3">
-              <h2 className="text-lg md:text-xl font-medium text-white/90">
-                Лидерборд, итоги через{' '}
-                <span className="inline-block font-bold text-white font-mono min-w-[140px] text-center">{timeLeft}</span>
-              </h2>
-            </div>
+            <h2 className="text-lg md:text-xl font-medium text-white/90">
+              Лидерборд, итоги через{' '}
+              <span className="inline-block font-bold text-white">{timeLeft}</span>
+            </h2>
           </div>
 
           {participants.length === 0 ? (
