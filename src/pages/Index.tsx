@@ -21,6 +21,7 @@ export default function Index() {
   const [loading, setLoading] = useState(true);
   const [hideShader, setHideShader] = useState(false);
   const [gradientOpacity, setGradientOpacity] = useState(0);
+  const [timeLeft, setTimeLeft] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,6 +40,31 @@ export default function Index() {
     fetchData();
     const interval = setInterval(fetchData, 30000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const endDate = new Date('2025-10-14T23:59:59');
+      const now = new Date();
+      const difference = endDate.getTime() - now.getTime();
+
+      if (difference <= 0) {
+        setTimeLeft('Конкурс завершён');
+        return;
+      }
+
+      const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+      setTimeLeft(`${days}д ${hours}ч ${minutes}м ${seconds}с`);
+    };
+
+    calculateTimeLeft();
+    const timer = setInterval(calculateTimeLeft, 1000);
+
+    return () => clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -122,16 +148,7 @@ export default function Index() {
                   Приглашенный должен забрать бесплатную энергию за вход
                 </span>
               </a>
-              {' '}в{' '}
-              <a 
-                href="https://t.me/+-Lwo9EkIwNc4YjIy" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white/60 hover:text-white/80 underline decoration-white/30 hover:decoration-white/50 transition-colors"
-              >
-                сообществе
-              </a>
-              {' '}poehali.dev · До 14 октября
+              {' '}в сообществе poehali.dev · {timeLeft}
             </p>
           </div>
 
