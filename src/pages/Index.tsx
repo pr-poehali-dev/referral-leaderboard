@@ -44,7 +44,7 @@ export default function Index() {
   useEffect(() => {
     const contentTimer = setTimeout(() => {
       setShowContent(true);
-    }, 1500);
+    }, 500);
 
     const gradientTimer = setTimeout(() => {
       setShowGradient(true);
@@ -84,7 +84,7 @@ export default function Index() {
       </div>
 
       <div 
-        className="relative z-10 min-h-screen flex items-center justify-center p-4 transition-opacity duration-1000"
+        className="relative z-10 min-h-screen flex items-center justify-center p-4 transition-opacity duration-[2000ms] ease-out"
         style={{ opacity: showContent ? 1 : 0 }}
       >
         <div className="w-full max-w-6xl">
