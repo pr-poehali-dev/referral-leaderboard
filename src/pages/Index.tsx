@@ -132,7 +132,7 @@ export default function Index() {
       <div className="relative z-40 min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-xl">
           <div className="text-center mb-8">
-            <h1 className="text-3xl md:text-5xl font-semibold text-white/90 mb-2">
+            <h1 className="text-[clamp(1.75rem,5vw,3rem)] font-semibold text-white/90 mb-2">
               Празднуем <span className="text-white font-bold">1000</span> вайбкодеров
             </h1>
             <p className="text-sm md:text-base text-white/50">
@@ -186,19 +186,11 @@ export default function Index() {
                     </h3>
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-1.5">
-                      <Icon name="UsersRound" size={16} className="text-white/60" />
-                      <span className="text-lg font-semibold text-white/90 tabular-nums">
-                        {participant.claimed_referrals}
-                      </span>
-                    </div>
-
-                    <div className="text-right bg-white/10 rounded-lg px-3 py-1.5 min-w-[70px]">
-                      <div className="text-sm font-medium text-white/80 tabular-nums">
-                        {index < 3 ? prizes[index].energy.toLocaleString() : '1,000'}
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-1.5">
+                    <Icon name="UsersRound" size={16} className="text-white/60" />
+                    <span className="text-lg font-semibold text-white/90 tabular-nums">
+                      {participant.claimed_referrals}
+                    </span>
                   </div>
                 </div>
               ))}
