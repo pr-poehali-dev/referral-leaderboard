@@ -105,10 +105,18 @@ export default function Index() {
       <div className="relative z-40 min-h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-6xl">
           <div className="text-center mb-6">
-            <h1 className="text-3xl md:text-5xl font-bold mb-2 tracking-tight text-white">
-              Празднуем <span className="bg-gradient-to-r from-primary via-yellow-400 to-primary bg-clip-text text-transparent">1000</span> в сообществе
+            <h1 className="font-bold tracking-tight leading-tight">
+              <div className="text-6xl md:text-8xl bg-gradient-to-r from-yellow-400 via-yellow-300 to-yellow-500 bg-clip-text text-transparent mb-2">
+                1000
+              </div>
+              <div className="text-3xl md:text-5xl text-white mb-1">
+                вайбкодеров
+              </div>
+              <div className="text-xl md:text-3xl text-gray-400">
+                в сообществе poehali.dev
+              </div>
             </h1>
-            <p className="text-sm md:text-base text-gray-400">Пригласи друзей и получи энергию · До 14 октября</p>
+            <p className="text-sm md:text-base text-gray-500 mt-4">Пригласи друзей и получи энергию · До 14 октября</p>
           </div>
 
           <div className="grid grid-cols-3 gap-2 md:gap-3 mb-4 max-w-2xl mx-auto">
