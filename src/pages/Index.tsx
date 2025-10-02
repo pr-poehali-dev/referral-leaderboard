@@ -139,7 +139,7 @@ export default function Index() {
             <h1 className="text-adaptive-hero font-semibold text-white/90 mb-2 leading-tight md:mt-12">
               Разыгрываем <span className="text-white font-bold">15 000</span> энергии
             </h1>
-            <p className="text-base md:text-lg text-white/50">
+            <p className="text-sm md:text-lg text-white/50">
               В честь 1000 вайбкодеров в{' '}
               <a 
                 href="https://t.me/+-Lwo9EkIwNc4YjIy" 
@@ -270,7 +270,7 @@ export default function Index() {
             transform: 'translate(-50%, -100%)',
           }}
         >
-          Ожидают: рефералу нужно забрать бесплатную энергию
+          Пользователям нужно забрать бесплатную энергию за вход, чтобы они засчитались как рефералы.
           <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-black"></div>
         </div>,
         document.body
