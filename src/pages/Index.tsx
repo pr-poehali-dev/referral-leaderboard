@@ -62,10 +62,10 @@ export default function Index() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden gradient-bg">
+    <div className="min-h-screen relative overflow-hidden bg-black">
       <div 
-        className="absolute inset-0 bg-black transition-opacity duration-[8000ms] ease-out pointer-events-none"
-        style={{ opacity: hideShader ? 0 : 1 }}
+        className="absolute inset-0 gradient-bg transition-opacity duration-[8000ms] ease-out pointer-events-none"
+        style={{ opacity: hideShader ? 1 : 0 }}
       />
       
       {!hideShader && (
