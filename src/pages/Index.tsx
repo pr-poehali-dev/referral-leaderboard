@@ -139,6 +139,22 @@ export default function Index() {
 
       <div className="relative z-40 min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-xl">
+          <div className="flex justify-center mb-6">
+            <div className="flex gap-2">
+              {[
+                { value: timeUnits.days, label: 'дней' },
+                { value: timeUnits.hours, label: 'часов' },
+                { value: timeUnits.minutes, label: 'минут' },
+                { value: timeUnits.seconds, label: 'секунд' }
+              ].map((unit, i) => (
+                <div key={i} className="backdrop-blur-xl bg-white/5 rounded-lg border border-white/10 px-3 py-2 min-w-[60px] text-center">
+                  <div className="text-xl md:text-2xl font-bold text-white font-mono">{String(unit.value).padStart(2, '0')}</div>
+                  <div className="text-[10px] md:text-xs text-white/40 mt-0.5">{unit.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div className="text-center mb-8">
             <h1 className="text-adaptive-hero font-semibold text-white/90 mb-2 leading-tight md:mt-12">
               Разыгрываем <span className="text-white font-bold">15 000</span> энергии
@@ -189,26 +205,11 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-3 mb-6">
-            <div className="flex items-center gap-2">
-              <span className="text-xl md:text-2xl">👇🏼</span>
-              <h2 className="text-sm md:text-xl font-medium text-white/90">
-                Лидерборд, итоги через
-              </h2>
-            </div>
-            <div className="flex gap-2">
-              {[
-                { value: timeUnits.days, label: 'дней' },
-                { value: timeUnits.hours, label: 'часов' },
-                { value: timeUnits.minutes, label: 'минут' },
-                { value: timeUnits.seconds, label: 'секунд' }
-              ].map((unit, i) => (
-                <div key={i} className="backdrop-blur-xl bg-white/5 rounded-lg border border-white/10 px-3 py-2 min-w-[60px] text-center">
-                  <div className="text-xl md:text-2xl font-bold text-white font-mono">{String(unit.value).padStart(2, '0')}</div>
-                  <div className="text-[10px] md:text-xs text-white/40 mt-0.5">{unit.label}</div>
-                </div>
-              ))}
-            </div>
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <span className="text-xl md:text-2xl">👇🏼</span>
+            <h2 className="text-sm md:text-xl font-medium text-white/90">
+              Лидерборд
+            </h2>
           </div>
 
           {participants.length === 0 ? (
