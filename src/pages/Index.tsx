@@ -263,7 +263,7 @@ export default function Index() {
 
       {hoveredPending && createPortal(
         <div
-          className="fixed px-3 py-2 bg-black border border-white/20 text-white text-xs rounded-lg shadow-xl z-[9999] pointer-events-none w-[calc(100vw-2rem)] max-w-[500px] sm:max-w-none sm:whitespace-nowrap sm:w-auto"
+          className="fixed px-3 py-2 bg-black border border-white/20 text-white text-xs rounded-lg shadow-xl z-[9999] pointer-events-none max-w-[85vw] sm:max-w-none sm:whitespace-nowrap"
           style={{
             left: `${tooltipPos.x}px`,
             top: `${tooltipPos.y}px`,
