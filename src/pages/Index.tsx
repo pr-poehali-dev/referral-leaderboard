@@ -135,8 +135,16 @@ export default function Index() {
             <h1 className="text-adaptive-hero font-semibold text-white/90 mb-2 leading-tight">
               Разыгрываем <span className="text-white font-bold">15 000</span> энергии
             </h1>
-            <p className="text-sm md:text-base text-white/50">
-              В честь 1000 вайбкодеров в нашем сообществе
+            <p className="text-base md:text-lg text-white/50">
+              В честь 1000 вайбкодеров в{' '}
+              <a 
+                href="https://t.me/+-Lwo9EkIwNc4YjIy" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white/80 underline decoration-white/30 hover:decoration-white/50 transition-colors"
+              >
+                нашем сообществе
+              </a>
             </p>
           </div>
 
@@ -145,7 +153,7 @@ export default function Index() {
               {prizes.map((prize) => (
                 <div
                   key={prize.place}
-                  className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-4 py-3 text-center"
+                  className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 w-24 h-24 flex flex-col items-center justify-center"
                 >
                   <div className="text-2xl mb-1">{prize.medal}</div>
                   <div className="text-sm font-medium text-white/60">{prize.energy.toLocaleString()}</div>
@@ -153,8 +161,8 @@ export default function Index() {
               ))}
             </div>
             
-            <div className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-4 py-3 flex-1 sm:max-w-[300px] flex flex-col justify-center">
-              <p className="text-xs md:text-sm text-white/50 text-center">
+            <div className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-6 py-4 flex-1 sm:max-w-[380px] flex items-center justify-center">
+              <p className="text-sm text-white/50 text-center">
                 <a 
                   href="http://poehali.dev/?show=free" 
                   target="_blank" 
@@ -163,10 +171,7 @@ export default function Index() {
                 >
                   Приглашай друзей
                 </a>
-                {' '}и выигрывай энергию
-              </p>
-              <p className="text-xs text-white/40 text-center mt-2">
-                Итоги через <span className="inline-block min-w-[2px] font-medium">{timeLeft}</span>
+                {' '}и выигрывай энергию, итоги через <span className="inline-block min-w-[2px] font-medium">{timeLeft}</span>
               </p>
             </div>
           </div>
