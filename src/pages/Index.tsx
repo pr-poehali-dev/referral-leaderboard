@@ -147,7 +147,7 @@ export default function Index() {
                 rel="noopener noreferrer"
                 className="text-white/60 hover:text-white/80 underline decoration-white/30 hover:decoration-white/50 transition-colors"
               >
-                нашем сообществе в Телеграм
+                нашем сообществе<span className="hidden md:inline"> в Телеграм</span>
               </a>
             </p>
           </div>
@@ -263,7 +263,7 @@ export default function Index() {
 
       {hoveredPending && createPortal(
         <div
-          className="fixed px-3 py-2 bg-black border border-white/20 text-white text-xs rounded-lg shadow-xl z-[9999] pointer-events-none max-w-[340px] sm:max-w-none sm:whitespace-nowrap"
+          className="fixed px-3 py-2 bg-black border border-white/20 text-white text-xs rounded-lg shadow-xl z-[9999] pointer-events-none w-[calc(100vw-2rem)] max-w-[500px] sm:max-w-none sm:whitespace-nowrap sm:w-auto"
           style={{
             left: `${tooltipPos.x}px`,
             top: `${tooltipPos.y}px`,
