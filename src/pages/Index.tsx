@@ -62,12 +62,14 @@ export default function Index() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden">
-      <div className={`absolute inset-0 transition-opacity duration-2000 ${shaderComplete ? 'opacity-0' : 'opacity-100'}`}>
-        <ShaderAnimation />
-      </div>
+    <div className="min-h-screen relative overflow-hidden bg-black">
+      {!shaderComplete && (
+        <div className="absolute inset-0 z-20">
+          <ShaderAnimation />
+        </div>
+      )}
       
-      <div className={`absolute inset-0 gradient-bg transition-opacity duration-2000 ${shaderComplete ? 'opacity-100' : 'opacity-0'}`} />
+      <div className={`absolute inset-0 gradient-bg transition-opacity duration-1000 ${shaderComplete ? 'opacity-100' : 'opacity-0'}`} />
 
       <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-6xl">
