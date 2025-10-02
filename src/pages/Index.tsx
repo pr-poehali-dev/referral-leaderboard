@@ -11,9 +11,9 @@ interface Participant {
 }
 
 const prizes = [
-  { place: 1, energy: 5000, medal: '🥇' },
+  { place: 1, energy: 10000, medal: '🥇' },
   { place: 2, energy: 3000, medal: '🥈' },
-  { place: 3, energy: 1000, medal: '🥉' },
+  { place: 3, energy: 2000, medal: '🥉' },
 ];
 
 export default function Index() {
@@ -132,36 +132,43 @@ export default function Index() {
       <div className="relative z-40 min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-xl">
           <div className="text-center mb-8">
-            <h1 className="text-adaptive-hero font-semibold text-white/90 mb-2 leading-tight text-4xl">
-              Празднуем <span className="text-white font-bold">1000</span> вайбкодеров
+            <h1 className="text-adaptive-hero font-semibold text-white/90 mb-2 leading-tight">
+              Разыгрываем <span className="text-white font-bold">15 000</span> энергии
             </h1>
             <p className="text-sm md:text-base text-white/50">
-              <a 
-                href="http://poehali.dev/?show=free" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-white/60 hover:text-white/80 underline decoration-white/30 hover:decoration-white/50 transition-colors group relative"
-                title="Приглашенный должен забрать бесплатную энергию за вход, чтобы засчитаться в конкурсе"
-              >
-                Приглашай друзей
-                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white/90 text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-xl border border-white/10">
-                  Приглашенный должен забрать бесплатную энергию за вход
-                </span>
-              </a>
-              {' '}и выигрывай энергию · Итоги через <span className="inline-block min-w-[2px]">{timeLeft}</span>
+              В честь 1000 вайбкодеров в нашем сообществе
             </p>
           </div>
 
-          <div className="flex justify-center gap-3 mb-6">
-            {prizes.map((prize) => (
-              <div
-                key={prize.place}
-                className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-4 py-3 text-center"
-              >
-                <div className="text-2xl mb-1">{prize.medal}</div>
-                <div className="text-sm font-medium text-white/60">{prize.energy.toLocaleString()}</div>
-              </div>
-            ))}
+          <div className="flex flex-col sm:flex-row justify-center items-stretch gap-3 mb-6">
+            <div className="flex justify-center gap-3">
+              {prizes.map((prize) => (
+                <div
+                  key={prize.place}
+                  className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-4 py-3 text-center"
+                >
+                  <div className="text-2xl mb-1">{prize.medal}</div>
+                  <div className="text-sm font-medium text-white/60">{prize.energy.toLocaleString()}</div>
+                </div>
+              ))}
+            </div>
+            
+            <div className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-4 py-3 flex-1 sm:max-w-[300px] flex flex-col justify-center">
+              <p className="text-xs md:text-sm text-white/50 text-center">
+                <a 
+                  href="http://poehali.dev/?show=free" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white/60 hover:text-white/80 underline decoration-white/30 hover:decoration-white/50 transition-colors"
+                >
+                  Приглашай друзей
+                </a>
+                {' '}и выигрывай энергию
+              </p>
+              <p className="text-xs text-white/40 text-center mt-2">
+                Итоги через <span className="inline-block min-w-[2px] font-medium">{timeLeft}</span>
+              </p>
+            </div>
           </div>
 
           {participants.length === 0 ? (
