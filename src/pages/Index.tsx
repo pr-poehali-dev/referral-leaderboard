@@ -207,7 +207,7 @@ export default function Index() {
               <p className="text-white/40">Таблица лидеров скоро появится</p>
             </div>
           ) : (
-            <div className="space-y-2 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="space-y-2 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
               {participants.map((participant, index) => (
                 <div
                   key={participant.profile_id}
