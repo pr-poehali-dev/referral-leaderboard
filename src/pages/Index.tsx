@@ -185,9 +185,9 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <span className="text-2xl">👇🏼</span>
-            <h2 className="text-lg md:text-xl font-medium text-white/90">
+          <div className="flex items-center justify-center gap-2 md:gap-3 mb-6">
+            <span className="text-xl md:text-2xl">👇🏼</span>
+            <h2 className="text-sm md:text-xl font-medium text-white/90">
               Лидерборд, итоги через{' '}
               <span className="inline-block font-bold text-white">{timeLeft}</span>
             </h2>
