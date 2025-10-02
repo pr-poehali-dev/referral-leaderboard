@@ -188,7 +188,7 @@ export default function Index() {
               <p className="text-white/40">Таблица лидеров скоро появится</p>
             </div>
           ) : (
-            <div className="space-y-2 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
+            <div className="space-y-2 max-h-[40vh] overflow-y-auto overflow-x-hidden pr-2 custom-scrollbar">
               {participants.map((participant, index) => {
                 const hasPending = participant.total_referrals > participant.claimed_referrals;
                 const pendingCount = participant.total_referrals - participant.claimed_referrals;
@@ -208,16 +208,16 @@ export default function Index() {
                       </h3>
                     </div>
 
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 flex-shrink-0">
                       {hasPending && (
                         <div className="relative group">
-                          <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-white/5 border border-white/10">
+                          <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-white/5 border border-white/10 cursor-help">
                             <Icon name="Clock" size={14} className="text-yellow-400/70" />
                             <span className="text-xs font-medium text-yellow-400/70 tabular-nums">
                               +{pendingCount}
                             </span>
                           </div>
-                          <div className="absolute top-full left-0 mt-2 px-3 py-2 bg-black/90 text-white/90 text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-xl border border-white/10 z-50">
+                          <div className="absolute top-full right-0 mt-2 px-3 py-2 bg-black/90 text-white/90 text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-xl border border-white/10 z-50 w-48 text-right">
                             Ожидают: рефералу нужно забрать бесплатную энергию
                           </div>
                         </div>
