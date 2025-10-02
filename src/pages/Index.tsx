@@ -196,7 +196,7 @@ export default function Index() {
                 return (
                   <div
                     key={participant.profile_id}
-                    className="backdrop-blur-xl bg-white/5 hover:bg-white/8 rounded-xl border border-white/10 px-4 py-3 transition-all duration-200 flex items-center gap-4"
+                    className="backdrop-blur-xl bg-white/5 hover:bg-white/8 rounded-xl border border-white/10 px-4 py-3 transition-all duration-200 flex items-center gap-4 relative"
                   >
                     <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-sm font-medium text-white/60">
                       {index + 1}
@@ -210,16 +210,14 @@ export default function Index() {
 
                     <div className="flex items-center gap-2 flex-shrink-0">
                       {hasPending && (
-                        <div className="relative group">
-                          <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-white/5 border border-white/10 cursor-help">
-                            <Icon name="Clock" size={14} className="text-yellow-400/70" />
-                            <span className="text-xs font-medium text-yellow-400/70 tabular-nums">
-                              +{pendingCount}
-                            </span>
-                          </div>
-                          <div className="absolute top-full right-0 mt-2 px-3 py-2 bg-black/90 text-white/90 text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-xl border border-white/10 z-50 w-48 text-right">
-                            Ожидают: рефералу нужно забрать бесплатную энергию
-                          </div>
+                        <div 
+                          className="flex items-center gap-1 px-2 py-1 rounded-md bg-white/5 border border-white/10 cursor-help"
+                          title="Ожидают: рефералу нужно забрать бесплатную энергию"
+                        >
+                          <Icon name="Clock" size={14} className="text-yellow-400/70" />
+                          <span className="text-xs font-medium text-yellow-400/70 tabular-nums">
+                            +{pendingCount}
+                          </span>
                         </div>
                       )}
 
