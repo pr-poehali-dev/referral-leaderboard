@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import Icon from '@/components/ui/icon';
 import { ShaderAnimation } from '@/components/ui/shader-animation';
 
@@ -22,6 +23,8 @@ export default function Index() {
   const [hideShader, setHideShader] = useState(false);
   const [gradientOpacity, setGradientOpacity] = useState(0);
   const [timeLeft, setTimeLeft] = useState('');
+  const [hoveredPending, setHoveredPending] = useState<string | null>(null);
+  const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const fetchData = async () => {
@@ -188,7 +191,7 @@ export default function Index() {
               <p className="text-white/40">Таблица лидеров скоро появится</p>
             </div>
           ) : (
-            <div className="space-y-2 max-h-[40vh] overflow-y-auto overflow-x-visible pr-2 custom-scrollbar">
+            <div className="space-y-2 max-h-[40vh] overflow-y-auto pr-2 custom-scrollbar">
               {participants.map((participant, index) => {
                 const hasPending = participant.total_referrals > participant.claimed_referrals;
                 const pendingCount = participant.total_referrals - participant.claimed_referrals;
@@ -196,7 +199,7 @@ export default function Index() {
                 return (
                   <div
                     key={participant.profile_id}
-                    className="backdrop-blur-xl bg-white/5 hover:bg-white/8 rounded-xl border border-white/10 px-4 py-3 transition-all duration-200 flex items-center gap-4 hover:z-10 relative"
+                    className="backdrop-blur-xl bg-white/5 hover:bg-white/8 rounded-xl border border-white/10 px-4 py-3 transition-all duration-200 flex items-center gap-4"
                   >
                     <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-sm font-medium text-white/60">
                       {index + 1}
@@ -210,17 +213,19 @@ export default function Index() {
 
                     <div className="flex items-center gap-2 flex-shrink-0">
                       {hasPending && (
-                        <div className="relative group/pending">
-                          <div className="flex items-center gap-1 px-2 py-1 rounded-md bg-white/5 border border-white/10 cursor-help">
-                            <Icon name="Clock" size={14} className="text-yellow-400/70" />
-                            <span className="text-xs font-medium text-yellow-400/70 tabular-nums">
-                              +{pendingCount}
-                            </span>
-                          </div>
-                          <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-2 px-3 py-2 bg-black border border-white/20 text-white text-xs rounded-lg whitespace-nowrap opacity-0 invisible group-hover/pending:opacity-100 group-hover/pending:visible transition-all duration-200 pointer-events-none z-[200] shadow-xl">
-                            Ожидают: рефералу нужно забрать бесплатную энергию
-                            <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-black"></div>
-                          </div>
+                        <div
+                          onMouseEnter={(e) => {
+                            const rect = e.currentTarget.getBoundingClientRect();
+                            setTooltipPos({ x: rect.left + rect.width / 2, y: rect.top - 8 });
+                            setHoveredPending(participant.profile_id);
+                          }}
+                          onMouseLeave={() => setHoveredPending(null)}
+                          className="flex items-center gap-1 px-2 py-1 rounded-md bg-white/5 border border-white/10 cursor-help"
+                        >
+                          <Icon name="Clock" size={14} className="text-yellow-400/70" />
+                          <span className="text-xs font-medium text-yellow-400/70 tabular-nums">
+                            +{pendingCount}
+                          </span>
                         </div>
                       )}
 
@@ -255,6 +260,21 @@ export default function Index() {
           </div>
         </footer>
       </div>
+
+      {hoveredPending && createPortal(
+        <div
+          className="fixed px-3 py-2 bg-black border border-white/20 text-white text-xs rounded-lg whitespace-nowrap shadow-xl z-[9999] pointer-events-none"
+          style={{
+            left: `${tooltipPos.x}px`,
+            top: `${tooltipPos.y}px`,
+            transform: 'translate(-50%, -100%)',
+          }}
+        >
+          Ожидают: рефералу нужно забрать бесплатную энергию
+          <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-black"></div>
+        </div>,
+        document.body
+      )}
     </div>
   );
 }
