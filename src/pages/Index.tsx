@@ -167,10 +167,14 @@ export default function Index() {
                   href="http://poehali.dev/?show=free" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity"
+                  className="hover:opacity-80 transition-opacity group relative"
                   style={{ color: '#fbb040' }}
+                  title="Приглашенный должен забрать бесплатную энергию за вход"
                 >
                   Приглашай друзей
+                  <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white/90 text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-xl border border-white/10">
+                    Приглашенный должен забрать бесплатную энергию за вход
+                  </span>
                 </a>
                 {' '}и выигрывай энергию, итоги через <span className="inline-block min-w-[2px] font-medium">{timeLeft}</span>
               </p>
