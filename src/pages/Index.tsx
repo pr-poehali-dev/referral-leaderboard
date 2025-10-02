@@ -62,18 +62,16 @@ export default function Index() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-black">
+    <div className={`min-h-screen relative overflow-hidden transition-all duration-1000 ${shaderComplete ? 'gradient-bg' : 'bg-black'}`}>
       {!shaderComplete && (
-        <div className="absolute inset-0 z-20">
+        <div className="absolute inset-0 z-50">
           <ShaderAnimation />
         </div>
       )}
-      
-      <div className={`absolute inset-0 gradient-bg transition-opacity duration-1000 ${shaderComplete ? 'opacity-100' : 'opacity-0'}`} />
 
-      <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
+      <div className={`min-h-screen flex items-center justify-center p-4 transition-opacity duration-1000 ${shaderComplete ? 'opacity-100' : 'opacity-0'}`}>
         <div className="w-full max-w-6xl">
-          <div className="text-center mb-6 animate-fade-in">
+          <div className="text-center mb-6">
             <h1 className="text-3xl md:text-5xl font-bold mb-2 tracking-tight text-white">
               Празднуем <span className="bg-gradient-to-r from-primary via-yellow-400 to-primary bg-clip-text text-transparent">1000</span> в сообществе
             </h1>
