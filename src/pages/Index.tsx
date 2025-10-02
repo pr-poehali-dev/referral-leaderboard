@@ -109,8 +109,20 @@ export default function Index() {
             <h1 className="text-2xl md:text-4xl font-semibold text-white/90 mb-2">
               Празднуем <span className="text-white font-bold">1000</span> вайбкодеров
             </h1>
-            <p className="text-sm md:text-base text-white/50 mb-1">
-              в{' '}
+            <p className="text-sm md:text-base text-white/50">
+              <a 
+                href="http://poehali.dev/?show=free" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white/80 underline decoration-white/30 hover:decoration-white/50 transition-colors group relative"
+                title="Приглашенный должен забрать бесплатную энергию за вход, чтобы засчитаться в конкурсе"
+              >
+                Пригласи друзей
+                <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white/90 text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-xl border border-white/10">
+                  Приглашенный должен забрать бесплатную энергию за вход
+                </span>
+              </a>
+              {' '}в{' '}
               <a 
                 href="https://t.me/+-Lwo9EkIwNc4YjIy" 
                 target="_blank" 
@@ -119,9 +131,8 @@ export default function Index() {
               >
                 сообществе
               </a>
-              {' '}poehali.dev
+              {' '}poehali.dev · До 14 октября
             </p>
-            <p className="text-xs md:text-sm text-white/40">Пригласи друзей · До 14 октября</p>
           </div>
 
           <div className="flex justify-center gap-3 mb-6">
