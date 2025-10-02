@@ -19,8 +19,7 @@ const prizes = [
 export default function Index() {
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showContent, setShowContent] = useState(true);
-  const [showGradient, setShowGradient] = useState(false);
+  const [hideShader, setHideShader] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,13 +41,11 @@ export default function Index() {
   }, []);
 
   useEffect(() => {
-    const gradientTimer = setTimeout(() => {
-      setShowGradient(true);
+    const shaderTimer = setTimeout(() => {
+      setHideShader(true);
     }, 3000);
 
-    return () => {
-      clearTimeout(gradientTimer);
-    };
+    return () => clearTimeout(shaderTimer);
   }, []);
 
   if (loading) {
@@ -67,21 +64,17 @@ export default function Index() {
   return (
     <div className="min-h-screen relative overflow-hidden gradient-bg">
       <div 
-        className="absolute inset-0 bg-black transition-opacity duration-[8000ms] ease-out"
-        style={{ opacity: showGradient ? 0 : 1 }}
+        className="absolute inset-0 bg-black transition-opacity duration-[8000ms] ease-out pointer-events-none"
+        style={{ opacity: hideShader ? 0 : 1 }}
       />
       
-      <div 
-        className="absolute inset-0 z-40 transition-opacity duration-1000"
-        style={{ opacity: showGradient ? 0 : 1, pointerEvents: showGradient ? 'none' : 'auto' }}
-      >
-        <ShaderAnimation />
-      </div>
+      {!hideShader && (
+        <div className="absolute inset-0 z-30 pointer-events-none">
+          <ShaderAnimation />
+        </div>
+      )}
 
-      <div 
-        className="relative z-10 min-h-screen flex items-center justify-center p-4 transition-opacity duration-[2000ms] ease-out"
-        style={{ opacity: showContent ? 1 : 0 }}
-      >
+      <div className="relative z-40 min-h-screen flex items-center justify-center p-4">
         <div className="w-full max-w-6xl">
           <div className="text-center mb-6">
             <h1 className="text-3xl md:text-5xl font-bold mb-2 tracking-tight text-white">
