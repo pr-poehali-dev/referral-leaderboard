@@ -190,8 +190,9 @@ export default function Index() {
           </div>
 
           <div className="flex flex-col items-center gap-3 mb-6">
-            <div className="text-sm md:text-base text-white/60">
-              👆🏼 Итоги через
+            <div className="text-sm md:text-base text-white/60 flex items-center gap-2">
+              <span>Итоги через</span>
+              <span className="text-xl md:text-2xl">👆🏼</span>
             </div>
             <div className="flex gap-2">
               {[
