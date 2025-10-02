@@ -214,6 +214,23 @@ export default function Index() {
             </div>
           )}
         </div>
+
+        <footer className="relative z-40 mt-12 pb-8">
+          <div className="flex items-center justify-center gap-2 text-white/40 text-sm">
+            <Icon name="Package" size={18} className="text-white/40" />
+            <p>
+              Сайт собран за 15 минут на{' '}
+              <a 
+                href="https://poehali.dev" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white/50 hover:text-white/70 transition-colors underline decoration-white/20"
+              >
+                poehali.dev
+              </a>
+            </p>
+          </div>
+        </footer>
       </div>
     </div>
   );
