@@ -130,9 +130,9 @@ export default function Index() {
       )}
 
       <div className="relative z-40 min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
-        <div className="w-full max-w-2xl">
+        <div className="w-full max-w-3xl">
           <div className="text-center mb-8">
-            <h1 className="text-2xl md:text-4xl font-semibold text-white/90 mb-2">
+            <h1 className="text-3xl md:text-5xl font-semibold text-white/90 mb-2">
               Празднуем <span className="text-white font-bold">1000</span> вайбкодеров
             </h1>
             <p className="text-sm md:text-base text-white/50">
@@ -188,7 +188,7 @@ export default function Index() {
 
                   <div className="flex items-center gap-3">
                     <div className="flex items-center gap-1.5">
-                      <Icon name="CheckCircle2" size={14} className="text-green-400/80" />
+                      <Icon name="UsersRound" size={16} className="text-white/60" />
                       <span className="text-lg font-semibold text-white/90 tabular-nums">
                         {participant.claimed_referrals}
                       </span>
