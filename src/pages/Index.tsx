@@ -130,7 +130,7 @@ export default function Index() {
       )}
 
       <div className="relative z-40 min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
-        <div className="w-full max-w-3xl">
+        <div className="w-full max-w-xl">
           <div className="text-center mb-8">
             <h1 className="text-3xl md:text-5xl font-semibold text-white/90 mb-2">
               Празднуем <span className="text-white font-bold">1000</span> вайбкодеров
