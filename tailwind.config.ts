@@ -19,7 +19,7 @@ export default {
 		},
 		extend: {
 			fontSize: {
-				'adaptive-hero': 'clamp(1.25rem, 5vw, 3rem)',
+				'adaptive-hero': 'clamp(1.25rem, 5vw, 2.25rem)',
 			},
 			colors: {
 				border: 'hsl(var(--border))',
