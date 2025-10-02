@@ -190,13 +190,6 @@ export default function Index() {
           </div>
 
           <div className="flex flex-col items-center gap-3 mb-6">
-            <div className="flex items-center gap-2">
-              <span className="text-xl md:text-2xl">👇🏼</span>
-              <h2 className="text-sm md:text-xl font-medium text-white/90">
-                Лидерборд, итоги через
-              </h2>
-              <span className="text-xl md:text-2xl">👆🏼</span>
-            </div>
             <div className="flex gap-2">
               {[
                 { value: timeUnits.days, label: 'дней' },
@@ -209,6 +202,13 @@ export default function Index() {
                   <div className="text-[10px] md:text-xs text-white/40 mt-0.5">{unit.label}</div>
                 </div>
               ))}
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xl md:text-2xl">👇🏼</span>
+              <h2 className="text-sm md:text-xl font-medium text-white/90">
+                Лидерборд, итоги через
+              </h2>
+              <span className="text-xl md:text-2xl">👆🏼</span>
             </div>
           </div>
 
