@@ -19,7 +19,7 @@ const prizes = [
 export default function Index() {
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [loading, setLoading] = useState(true);
-  const [showContent, setShowContent] = useState(false);
+  const [showContent, setShowContent] = useState(true);
   const [showGradient, setShowGradient] = useState(false);
 
   useEffect(() => {
@@ -42,8 +42,6 @@ export default function Index() {
   }, []);
 
   useEffect(() => {
-    setShowContent(true);
-
     const gradientTimer = setTimeout(() => {
       setShowGradient(true);
     }, 3000);
