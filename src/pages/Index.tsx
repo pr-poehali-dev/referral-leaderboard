@@ -20,6 +20,7 @@ export default function Index() {
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [loading, setLoading] = useState(true);
   const [hideShader, setHideShader] = useState(false);
+  const [gradientOpacity, setGradientOpacity] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,6 +44,22 @@ export default function Index() {
   useEffect(() => {
     const shaderTimer = setTimeout(() => {
       setHideShader(true);
+      
+      let opacity = 0;
+      const duration = 8000;
+      const interval = 50;
+      const step = interval / duration;
+      
+      const gradientInterval = setInterval(() => {
+        opacity += step;
+        if (opacity >= 1) {
+          opacity = 1;
+          clearInterval(gradientInterval);
+        }
+        setGradientOpacity(opacity);
+      }, interval);
+      
+      return () => clearInterval(gradientInterval);
     }, 3000);
 
     return () => clearTimeout(shaderTimer);
@@ -64,8 +81,8 @@ export default function Index() {
   return (
     <div className="min-h-screen relative overflow-hidden bg-black">
       <div 
-        className="absolute inset-0 gradient-bg transition-opacity duration-[8000ms] ease-out pointer-events-none"
-        style={{ opacity: hideShader ? 1 : 0 }}
+        className="absolute inset-0 gradient-bg pointer-events-none"
+        style={{ opacity: gradientOpacity }}
       />
       
       {!hideShader && (
