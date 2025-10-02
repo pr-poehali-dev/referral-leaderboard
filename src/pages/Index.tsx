@@ -139,7 +139,7 @@ export default function Index() {
             <h1 className="text-adaptive-hero font-semibold text-white/90 mb-2 leading-tight md:mt-12">
               Разыгрываем <span className="text-white font-bold">15 000</span> энергии
             </h1>
-            <p className="text-sm md:text-lg text-white/50">
+            <p className="text-xs md:text-lg text-white/50">
               В честь 1000 вайбкодеров в{' '}
               <a 
                 href="https://t.me/+-Lwo9EkIwNc4YjIy" 
@@ -263,7 +263,7 @@ export default function Index() {
 
       {hoveredPending && createPortal(
         <div
-          className="fixed px-3 py-2 bg-black border border-white/20 text-white text-xs rounded-lg shadow-xl z-[9999] pointer-events-none max-w-[280px] sm:max-w-none sm:whitespace-nowrap"
+          className="fixed px-3 py-2 bg-black border border-white/20 text-white text-xs rounded-lg shadow-xl z-[9999] pointer-events-none max-w-[340px] sm:max-w-none sm:whitespace-nowrap"
           style={{
             left: `${tooltipPos.x}px`,
             top: `${tooltipPos.y}px`,
