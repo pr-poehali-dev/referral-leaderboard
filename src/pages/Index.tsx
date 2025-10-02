@@ -136,14 +136,13 @@ export default function Index() {
               Празднуем <span className="text-white font-bold">1000</span> вайбкодеров
             </h1>
             <p className="text-sm md:text-base text-white/50">
-              В сообществе poehali.dev ·{' '}
               <a 
                 href="http://poehali.dev/?show=free" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white/60 hover:text-white/80 underline decoration-white/30 hover:decoration-white/50 transition-colors"
               >
-                Пригласи друзей
+                Приглашай друзей и выигрывай энергию
               </a>
               {' '}· Итоги через {timeLeft}
             </p>
