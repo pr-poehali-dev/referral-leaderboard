@@ -169,11 +169,11 @@ export default function Index() {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center items-stretch gap-3 mb-6">
-            <div className="flex justify-center gap-3">
+            <div className="grid grid-cols-3 sm:flex sm:justify-center gap-3 w-full sm:w-auto">
               {prizes.map((prize) => (
                 <div
                   key={prize.place}
-                  className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 w-24 h-24 flex flex-col items-center justify-center"
+                  className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 aspect-square sm:w-24 sm:h-24 flex flex-col items-center justify-center"
                 >
                   <div className="text-2xl mb-1">{prize.medal}</div>
                   <div className="text-sm font-medium text-white/60">{prize.energy.toLocaleString()}</div>
