@@ -19,7 +19,8 @@ const prizes = [
 export default function Index() {
   const [participants, setParticipants] = useState<Participant[]>([]);
   const [loading, setLoading] = useState(true);
-  const [shaderComplete, setShaderComplete] = useState(false);
+  const [showContent, setShowContent] = useState(false);
+  const [showGradient, setShowGradient] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -41,11 +42,18 @@ export default function Index() {
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShaderComplete(true);
+    const contentTimer = setTimeout(() => {
+      setShowContent(true);
+    }, 1500);
+
+    const gradientTimer = setTimeout(() => {
+      setShowGradient(true);
     }, 3000);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(contentTimer);
+      clearTimeout(gradientTimer);
+    };
   }, []);
 
   if (loading) {
@@ -62,16 +70,23 @@ export default function Index() {
   }
 
   return (
-    <div className="min-h-screen relative overflow-hidden bg-black">
-      <div className={`absolute inset-0 gradient-bg transition-opacity duration-[8000ms] ${shaderComplete ? 'opacity-100' : 'opacity-0'}`} />
+    <div className="min-h-screen relative overflow-hidden gradient-bg">
+      <div 
+        className="absolute inset-0 bg-black transition-opacity duration-[8000ms] ease-out"
+        style={{ opacity: showGradient ? 0 : 1 }}
+      />
       
-      {!shaderComplete && (
-        <div className="absolute inset-0 z-50">
-          <ShaderAnimation />
-        </div>
-      )}
+      <div 
+        className="absolute inset-0 z-40 transition-opacity duration-1000"
+        style={{ opacity: showGradient ? 0 : 1, pointerEvents: showGradient ? 'none' : 'auto' }}
+      >
+        <ShaderAnimation />
+      </div>
 
-      <div className="relative z-10 min-h-screen flex items-center justify-center p-4 animate-fade-in" style={{ animationDelay: '1500ms', animationFillMode: 'backwards' }}>
+      <div 
+        className="relative z-10 min-h-screen flex items-center justify-center p-4 transition-opacity duration-1000"
+        style={{ opacity: showContent ? 1 : 0 }}
+      >
         <div className="w-full max-w-6xl">
           <div className="text-center mb-6">
             <h1 className="text-3xl md:text-5xl font-bold mb-2 tracking-tight text-white">
