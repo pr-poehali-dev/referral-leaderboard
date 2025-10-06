@@ -26,6 +26,7 @@ export default function Index() {
   const [hoveredPending, setHoveredPending] = useState<string | null>(null);
   const [hoveredProbability, setHoveredProbability] = useState<string | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
+  const [rulesOpen, setRulesOpen] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -172,22 +173,68 @@ export default function Index() {
             
             <div className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-6 py-4 flex-1 sm:max-w-[380px] flex items-center justify-center">
               <p className="text-sm text-white/50 text-center">
+                Победить может каждый — приглашайте больше{' '}
                 <a 
                   href="http://poehali.dev/?show=free" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:opacity-80 transition-opacity group relative"
+                  className="hover:opacity-80 transition-opacity"
                   style={{ color: '#fbb040' }}
-                  title="Приглашенный должен забрать бесплатную энергию за вход"
                 >
-                  Приглашай друзей
-                  <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white/90 text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-xl border border-white/10">
-                    Чем больше рефералов — тем выше шанс выиграть в розыгрыше
-                  </span>
+                  друзей
                 </a>
-                {' '}— выше шанс победить
+                , чтобы увеличить вероятность победы
               </p>
             </div>
+          </div>
+
+          <div className="mb-6">
+            <button
+              onClick={() => setRulesOpen(!rulesOpen)}
+              className="w-full backdrop-blur-xl bg-white/5 hover:bg-white/8 rounded-2xl border border-white/10 px-6 py-3 transition-all duration-200 flex items-center justify-between group"
+            >
+              <span className="text-white/70 text-sm font-medium">📋 Правила конкурса</span>
+              <Icon 
+                name={rulesOpen ? "ChevronUp" : "ChevronDown"} 
+                size={20} 
+                className="text-white/50 group-hover:text-white/70 transition-colors" 
+              />
+            </button>
+            
+            {rulesOpen && (
+              <div className="mt-3 backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-6 py-4">
+                <ul className="text-white/60 text-sm space-y-2.5 leading-relaxed">
+                  <li className="flex gap-2">
+                    <span className="text-white/40 flex-shrink-0">•</span>
+                    <span>Приглашайте друзей через свою реферальную ссылку в poehali.dev</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-white/40 flex-shrink-0">•</span>
+                    <span>Друг должен забрать бесплатную энергию за вход, чтобы засчитался</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-white/40 flex-shrink-0">•</span>
+                    <span>Чем больше рефералов — тем выше вероятность выигрыша в розыгрыше</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-white/40 flex-shrink-0">•</span>
+                    <span>Победители определяются через честную рулетку 14 октября</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-white/40 flex-shrink-0">•</span>
+                    <span>У каждого участника есть шанс выиграть, независимо от места в таблице</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-white/40 flex-shrink-0">•</span>
+                    <span>Вероятность рассчитывается пропорционально количеству принятых рефералов</span>
+                  </li>
+                  <li className="flex gap-2">
+                    <span className="text-white/40 flex-shrink-0">•</span>
+                    <span>Разыгрываем три приза: 🥇 10 000, 🥈 3 000 и 🥉 2 000 энергии</span>
+                  </li>
+                </ul>
+              </div>
+            )}
           </div>
 
           <div className="flex flex-col items-center gap-3 mb-6">
