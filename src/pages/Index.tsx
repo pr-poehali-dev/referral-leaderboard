@@ -12,9 +12,9 @@ interface Participant {
 }
 
 const prizes = [
-  { place: 1, energy: 10000, medal: '🥇' },
-  { place: 2, energy: 3000, medal: '🥈' },
-  { place: 3, energy: 2000, medal: '🥉' },
+  { probability: '99%', energy: 10000, medal: '🥇' },
+  { probability: '95%', energy: 3000, medal: '🥈' },
+  { probability: '85%', energy: 2000, medal: '🥉' },
 ];
 
 export default function Index() {
@@ -158,12 +158,13 @@ export default function Index() {
 
           <div className="flex flex-col sm:flex-row justify-center items-stretch gap-3 mb-6">
             <div className="grid grid-cols-3 sm:flex sm:justify-center gap-3 w-full sm:w-auto">
-              {prizes.map((prize) => (
+              {prizes.map((prize, idx) => (
                 <div
-                  key={prize.place}
+                  key={idx}
                   className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 aspect-square sm:w-24 sm:h-24 flex flex-col items-center justify-center"
                 >
                   <div className="text-2xl mb-1">{prize.medal}</div>
+                  <div className="text-xs font-medium text-white/50 mb-0.5">{prize.probability}</div>
                   <div className="text-sm font-medium text-white/60">{prize.energy.toLocaleString()}</div>
                 </div>
               ))}
@@ -181,10 +182,10 @@ export default function Index() {
                 >
                   Приглашай друзей
                   <span className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-black/90 text-white/90 text-xs rounded-lg whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none backdrop-blur-xl border border-white/10">
-                    Приглашенный должен забрать бесплатную энергию за вход
+                    Чем больше рефералов — тем выше шанс выиграть в розыгрыше
                   </span>
                 </a>
-                {' '}и выигрывай энергию
+                {' '}— выше шанс победить
               </p>
             </div>
           </div>
@@ -206,7 +207,7 @@ export default function Index() {
             <div className="flex items-center gap-2">
               <span className="text-xl md:text-2xl">👆🏼</span>
               <h2 className="text-sm md:text-xl font-medium text-white/90">
-                Итоги через • лидерборд
+                Итоги через рулетку • лидерборд
               </h2>
               <span className="text-xl md:text-2xl">👇🏼</span>
             </div>
@@ -271,6 +272,17 @@ export default function Index() {
         </div>
 
         <footer className="relative z-40 mt-12 pb-8">
+          <div className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-6 py-4 mb-6 max-w-xl mx-auto">
+            <h3 className="text-white/90 font-semibold mb-3 text-center">📜 Правила конкурса</h3>
+            <ul className="text-white/60 text-sm space-y-2 leading-relaxed">
+              <li>• Приглашайте друзей через свою реферальную ссылку в poehali.dev</li>
+              <li>• Друг должен забрать бесплатную энергию за вход, чтобы засчитался</li>
+              <li>• Чем больше рефералов — тем выше вероятность выигрыша в розыгрыше</li>
+              <li>• Победители определятся через честную рулетку 14 октября</li>
+              <li>• У каждого участника есть шанс выиграть, независимо от места в таблице</li>
+              <li>• Топ лидеров получат бонусные шансы: 🥇99%, 🥈95%, 🥉85%</li>
+            </ul>
+          </div>
           <div className="flex items-center justify-center gap-2 text-white/40 text-sm">
             <Icon name="Box" size={18} className="text-white/40" />
             <p>
