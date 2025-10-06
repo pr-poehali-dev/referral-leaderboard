@@ -223,20 +223,20 @@ export default function Index() {
                 const hasPending = participant.total_referrals > participant.claimed_referrals;
                 const pendingCount = participant.total_referrals - participant.claimed_referrals;
                 
-                let probability = '50%';
-                if (index === 0) probability = '99%';
-                else if (index === 1) probability = '95%';
-                else if (index === 2) probability = '85%';
-                else if (index <= 5) probability = '70%';
-                else if (index <= 10) probability = '60%';
+                const totalClaimed = participants.reduce((sum, p) => sum + p.claimed_referrals, 0);
+                const probability = totalClaimed > 0 
+                  ? Math.round((participant.claimed_referrals / totalClaimed) * 100)
+                  : 0;
                 
                 return (
                   <div
                     key={participant.profile_id}
                     className="backdrop-blur-xl bg-white/5 hover:bg-white/8 rounded-xl border border-white/10 px-4 py-3 transition-all duration-200 flex items-center gap-4"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center text-sm font-medium text-white/60">
-                      {index + 1}
+                    <div className="flex-shrink-0 w-14 h-8 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center">
+                      <span className="text-sm font-bold text-green-400 tabular-nums">
+                        {probability}%
+                      </span>
                     </div>
 
                     <div className="flex-grow min-w-0">
@@ -262,12 +262,6 @@ export default function Index() {
                           </span>
                         </div>
                       )}
-
-                      <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-green-500/10 border border-green-500/20">
-                        <span className="text-sm font-semibold text-green-400 tabular-nums">
-                          {probability}
-                        </span>
-                      </div>
 
                       <div className="flex items-center gap-1.5">
                         <Icon name="UsersRound" size={16} className="text-white/60" />
