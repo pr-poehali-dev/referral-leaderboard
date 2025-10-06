@@ -24,6 +24,7 @@ export default function Index() {
   const [gradientOpacity, setGradientOpacity] = useState(0);
   const [timeLeft, setTimeLeft] = useState('');
   const [hoveredPending, setHoveredPending] = useState<string | null>(null);
+  const [hoveredProbability, setHoveredProbability] = useState<string | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -228,13 +229,41 @@ export default function Index() {
                   ? Math.round((participant.claimed_referrals / totalClaimed) * 100)
                   : 0;
                 
+                let colorClasses = {
+                  bg: 'bg-red-500/10',
+                  border: 'border-red-500/20',
+                  text: 'text-red-400'
+                };
+                
+                if (probability >= 15) {
+                  colorClasses = {
+                    bg: 'bg-green-500/10',
+                    border: 'border-green-500/20',
+                    text: 'text-green-400'
+                  };
+                } else if (probability >= 5) {
+                  colorClasses = {
+                    bg: 'bg-yellow-500/10',
+                    border: 'border-yellow-500/20',
+                    text: 'text-yellow-400'
+                  };
+                }
+                
                 return (
                   <div
                     key={participant.profile_id}
                     className="backdrop-blur-xl bg-white/5 hover:bg-white/8 rounded-xl border border-white/10 px-4 py-3 transition-all duration-200 flex items-center gap-4"
                   >
-                    <div className="flex-shrink-0 w-14 h-8 rounded-lg bg-green-500/10 border border-green-500/20 flex items-center justify-center">
-                      <span className="text-sm font-bold text-green-400 tabular-nums">
+                    <div 
+                      className={`flex-shrink-0 w-14 h-8 rounded-lg ${colorClasses.bg} border ${colorClasses.border} flex items-center justify-center cursor-help`}
+                      onMouseEnter={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        setTooltipPos({ x: rect.left + rect.width / 2, y: rect.top - 8 });
+                        setHoveredProbability(participant.profile_id);
+                      }}
+                      onMouseLeave={() => setHoveredProbability(null)}
+                    >
+                      <span className={`text-sm font-bold ${colorClasses.text} tabular-nums`}>
                         {probability}%
                       </span>
                     </div>
@@ -316,6 +345,21 @@ export default function Index() {
           }}
         >
           Пользователям нужно забрать бесплатную энергию за вход, чтобы они засчитались как рефералы.
+          <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-black"></div>
+        </div>,
+        document.body
+      )}
+
+      {hoveredProbability && createPortal(
+        <div
+          className="fixed px-3 py-2 bg-black border border-white/20 text-white text-xs rounded-lg shadow-xl z-[9999] pointer-events-none max-w-[85vw] sm:max-w-none sm:whitespace-nowrap"
+          style={{
+            left: `${tooltipPos.x}px`,
+            top: `${tooltipPos.y}px`,
+            transform: 'translate(-50%, -100%)',
+          }}
+        >
+          Вероятность выигрыша в рулетке при розыгрыше
           <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-px w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-black"></div>
         </div>,
         document.body
