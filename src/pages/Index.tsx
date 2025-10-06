@@ -12,9 +12,9 @@ interface Participant {
 }
 
 const prizes = [
-  { probability: '99%', energy: 10000, medal: '🥇' },
-  { probability: '95%', energy: 3000, medal: '🥈' },
-  { probability: '85%', energy: 2000, medal: '🥉' },
+  { place: 1, energy: 10000, medal: '🥇' },
+  { place: 2, energy: 3000, medal: '🥈' },
+  { place: 3, energy: 2000, medal: '🥉' },
 ];
 
 export default function Index() {
@@ -158,13 +158,12 @@ export default function Index() {
 
           <div className="flex flex-col sm:flex-row justify-center items-stretch gap-3 mb-6">
             <div className="grid grid-cols-3 sm:flex sm:justify-center gap-3 w-full sm:w-auto">
-              {prizes.map((prize, idx) => (
+              {prizes.map((prize) => (
                 <div
-                  key={idx}
+                  key={prize.place}
                   className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 aspect-square sm:w-24 sm:h-24 flex flex-col items-center justify-center"
                 >
                   <div className="text-2xl mb-1">{prize.medal}</div>
-                  <div className="text-xs font-medium text-white/50 mb-0.5">{prize.probability}</div>
                   <div className="text-sm font-medium text-white/60">{prize.energy.toLocaleString()}</div>
                 </div>
               ))}
@@ -224,6 +223,13 @@ export default function Index() {
                 const hasPending = participant.total_referrals > participant.claimed_referrals;
                 const pendingCount = participant.total_referrals - participant.claimed_referrals;
                 
+                let probability = '50%';
+                if (index === 0) probability = '99%';
+                else if (index === 1) probability = '95%';
+                else if (index === 2) probability = '85%';
+                else if (index <= 5) probability = '70%';
+                else if (index <= 10) probability = '60%';
+                
                 return (
                   <div
                     key={participant.profile_id}
@@ -256,6 +262,12 @@ export default function Index() {
                           </span>
                         </div>
                       )}
+
+                      <div className="flex items-center gap-1.5 px-2 py-1 rounded-md bg-green-500/10 border border-green-500/20">
+                        <span className="text-sm font-semibold text-green-400 tabular-nums">
+                          {probability}
+                        </span>
+                      </div>
 
                       <div className="flex items-center gap-1.5">
                         <Icon name="UsersRound" size={16} className="text-white/60" />
