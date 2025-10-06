@@ -173,7 +173,7 @@ export default function Index() {
             
             <div className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-6 py-4 flex-1 sm:max-w-[380px] flex items-center justify-center">
               <p className="text-sm text-white/50 text-center">
-                Победить может каждый — приглашайте больше{' '}
+                Победить может каждый —{' '}
                 <a 
                   href="http://poehali.dev/?show=free" 
                   target="_blank" 
@@ -181,9 +181,9 @@ export default function Index() {
                   className="hover:opacity-80 transition-opacity"
                   style={{ color: '#fbb040' }}
                 >
-                  друзей
+                  приглашайте больше друзей
                 </a>
-                , чтобы увеличить вероятность победы
+                , чтобы победить
               </p>
             </div>
           </div>
@@ -201,7 +201,10 @@ export default function Index() {
               />
             </button>
             
-            {rulesOpen && (
+            <div 
+              className="overflow-hidden transition-all duration-300 ease-in-out"
+              style={{ maxHeight: rulesOpen ? '500px' : '0' }}
+            >
               <div className="mt-3 backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-6 py-4">
                 <ul className="text-white/60 text-sm space-y-2.5 leading-relaxed">
                   <li className="flex gap-2">
@@ -234,7 +237,7 @@ export default function Index() {
                   </li>
                 </ul>
               </div>
-            )}
+            </div>
           </div>
 
           <div className="flex flex-col items-center gap-3 mb-6">
@@ -354,17 +357,6 @@ export default function Index() {
         </div>
 
         <footer className="relative z-40 mt-12 pb-8">
-          <div className="backdrop-blur-xl bg-white/5 rounded-2xl border border-white/10 px-6 py-4 mb-6 max-w-xl mx-auto">
-            <h3 className="text-white/90 font-semibold mb-3 text-center">📜 Правила конкурса</h3>
-            <ul className="text-white/60 text-sm space-y-2 leading-relaxed">
-              <li>• Приглашайте друзей через свою реферальную ссылку в poehali.dev</li>
-              <li>• Друг должен забрать бесплатную энергию за вход, чтобы засчитался</li>
-              <li>• Чем больше рефералов — тем выше вероятность выигрыша в розыгрыше</li>
-              <li>• Победители определятся через честную рулетку 14 октября</li>
-              <li>• У каждого участника есть шанс выиграть, независимо от места в таблице</li>
-              <li>• Топ лидеров получат бонусные шансы: 🥇99%, 🥈95%, 🥉85%</li>
-            </ul>
-          </div>
           <div className="flex items-center justify-center gap-2 text-white/40 text-sm">
             <Icon name="Box" size={18} className="text-white/40" />
             <p>
