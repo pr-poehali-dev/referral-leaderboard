@@ -256,9 +256,7 @@ export default function Index() {
             </div>
             <div className="flex items-center gap-2">
               <span className="text-xl md:text-2xl">👆🏼</span>
-              <h2 className="text-sm md:text-xl font-medium text-white/90">
-                Итоги через рулетку • лидерборд
-              </h2>
+              <h2 className="text-sm md:text-xl font-medium text-white/90">Итоги через • лидерборд</h2>
               <span className="text-xl md:text-2xl">👇🏼</span>
             </div>
           </div>
