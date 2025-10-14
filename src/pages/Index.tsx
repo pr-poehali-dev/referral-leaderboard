@@ -151,11 +151,11 @@ export default function Index() {
             </div>
 
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-bold text-white/90">
+              <h1 className="text-3xl md:text-5xl font-bold text-white/90">
                 Конкурс завершён! 🎉
               </h1>
               
-              <p className="text-xl md:text-2xl text-white/60">
+              <p className="text-base md:text-2xl text-white/60 px-4">
                 Мы подводим итоги. Результаты будут уже сегодня — подписывайтесь на Телеграм, чтобы не пропустить
               </p>
             </div>
@@ -165,7 +165,7 @@ export default function Index() {
                 href="https://t.me/+QgiLIa1gFRY4Y2Iy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block backdrop-blur-xl bg-orange-500/20 hover:bg-orange-500/30 border border-orange-400/30 text-white px-8 py-4 text-lg rounded-2xl transition-all duration-200"
+                className="inline-block backdrop-blur-xl bg-orange-500/20 hover:bg-orange-500/30 border border-orange-400/30 text-white px-6 py-3 md:px-8 md:py-4 text-base md:text-lg rounded-2xl transition-all duration-200"
               >
                 Подписаться на Телеграм
               </a>
