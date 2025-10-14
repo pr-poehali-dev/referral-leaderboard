@@ -55,7 +55,7 @@ export default function Index() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const endDate = new Date('2025-10-14T10:00:00');
+      const endDate = new Date('2025-10-14T23:59:59');
       const now = new Date();
       const difference = endDate.getTime() - now.getTime();
 
