@@ -1,14 +1,13 @@
 import Lottie from 'lottie-react';
 import { Button } from '@/components/ui/button';
+import animationData from '/contest-ended-animation.json';
 
 const ContestEnded = () => {
-  const emptyAnimation = {};
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
       <div className="max-w-2xl w-full text-center space-y-8">
         <div className="w-64 h-64 mx-auto">
-          <Lottie animationData={emptyAnimation} loop={true} />
+          <Lottie animationData={animationData} loop={true} />
         </div>
 
         <div className="space-y-4">
