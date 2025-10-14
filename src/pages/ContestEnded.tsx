@@ -1,6 +1,6 @@
 import Lottie from 'lottie-react';
 import { Button } from '@/components/ui/button';
-import animationData from '/contest-ended-animation.json';
+import animationData from '@/contest-ended-animation.json';
 
 const ContestEnded = () => {
   return (
