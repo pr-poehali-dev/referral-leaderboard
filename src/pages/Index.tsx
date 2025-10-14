@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
+import Lottie from 'lottie-react';
 import Icon from '@/components/ui/icon';
 import { ShaderAnimation } from '@/components/ui/shader-animation';
+import animationData from '@/contest-ended-animation.json';
 
 interface Participant {
   profile_id: string;
@@ -27,6 +29,7 @@ export default function Index() {
   const [hoveredProbability, setHoveredProbability] = useState<string | null>(null);
   const [tooltipPos, setTooltipPos] = useState({ x: 0, y: 0 });
   const [rulesOpen, setRulesOpen] = useState(false);
+  const [contestEnded, setContestEnded] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,6 +62,7 @@ export default function Index() {
       if (difference <= 0) {
         setTimeLeft('Конкурс завершён');
         setTimeUnits({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        setContestEnded(true);
         return;
       }
 
@@ -109,6 +113,71 @@ export default function Index() {
         </div>
         <div className="relative z-10 animate-spin">
           <Icon name="Loader2" size={64} className="text-white/50" />
+        </div>
+      </div>
+    );
+  }
+
+  if (contestEnded) {
+    return (
+      <div className="min-h-screen relative overflow-hidden bg-black">
+        <div 
+          className="absolute inset-0 pointer-events-none animate-gradient-shift"
+          style={{
+            opacity: gradientOpacity * 0.9,
+            background: `
+              radial-gradient(circle at 20% 30%, rgba(251, 0, 0, 0.18) 0%, transparent 30%),
+              radial-gradient(circle at 80% 20%, rgba(255, 193, 7, 0.16) 0%, transparent 30%),
+              radial-gradient(circle at 40% 80%, rgba(76, 175, 80, 0.15) 0%, transparent 35%),
+              radial-gradient(circle at 90% 70%, rgba(0, 35, 218, 0.14) 0%, transparent 25%),
+              radial-gradient(circle at 10% 50%, rgba(255, 196, 0, 0.13) 0%, transparent 20%),
+              radial-gradient(circle at 70% 90%, rgba(255, 235, 59, 0.15) 0%, transparent 28%),
+              radial-gradient(circle at 60% 10%, rgba(233, 30, 99, 0.12) 0%, transparent 22%)
+            `,
+            backgroundSize: '200% 200%'
+          }}
+        />
+        
+        {!hideShader && (
+          <div className="absolute inset-0 z-30 pointer-events-none">
+            <ShaderAnimation />
+          </div>
+        )}
+
+        <div className="relative z-40 min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
+          <div className="w-full max-w-2xl text-center space-y-8">
+            <div className="w-64 h-64 mx-auto">
+              <Lottie animationData={animationData} loop={true} />
+            </div>
+
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-white/90">
+                Конкурс завершён! 🎉
+              </h1>
+              
+              <p className="text-xl md:text-2xl text-white/60">
+                Мы подводим итоги конкурса
+              </p>
+
+              <p className="text-lg text-white/50">
+                Результаты будут доступны уже сегодня
+              </p>
+            </div>
+
+            <div className="pt-4">
+              <a
+                href="https://t.me/+QgiLIa1gFRY4Y2Iy"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block backdrop-blur-xl bg-blue-500/20 hover:bg-blue-500/30 border border-blue-400/30 text-white px-8 py-4 text-lg rounded-2xl transition-all duration-200"
+              >
+                Подписаться на Телеграм
+              </a>
+              <p className="text-sm text-white/40 mt-3">
+                Чтобы не пропустить результаты
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     );
