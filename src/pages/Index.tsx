@@ -156,11 +156,7 @@ export default function Index() {
               </h1>
               
               <p className="text-xl md:text-2xl text-white/60">
-                Мы подводим итоги конкурса
-              </p>
-
-              <p className="text-lg text-white/50">
-                Результаты будут доступны уже сегодня
+                Мы подводим итоги конкурса. Результаты будут доступны уже сегодня — подписывайтесь на Телеграм, чтобы не пропустить результаты
               </p>
             </div>
 
@@ -169,13 +165,10 @@ export default function Index() {
                 href="https://t.me/+QgiLIa1gFRY4Y2Iy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block backdrop-blur-xl bg-blue-500/20 hover:bg-blue-500/30 border border-blue-400/30 text-white px-8 py-4 text-lg rounded-2xl transition-all duration-200"
+                className="inline-block backdrop-blur-xl bg-orange-500/20 hover:bg-orange-500/30 border border-orange-400/30 text-white px-8 py-4 text-lg rounded-2xl transition-all duration-200"
               >
                 Подписаться на Телеграм
               </a>
-              <p className="text-sm text-white/40 mt-3">
-                Чтобы не пропустить результаты
-              </p>
             </div>
           </div>
         </div>
