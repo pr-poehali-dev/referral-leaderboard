@@ -142,9 +142,6 @@ export default function WinnerRoulette() {
             <h1 className="text-4xl md:text-6xl font-bold text-white/90 mb-4">
               Рулетка победителей
             </h1>
-            <p className="text-lg md:text-xl text-white/60">
-              Определяем победителей конкурса на 15 000 энергии
-            </p>
           </div>
 
           {currentPrize && (
