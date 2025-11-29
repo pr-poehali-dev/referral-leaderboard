@@ -138,11 +138,7 @@ export default function WinnerRoulette() {
 
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center p-4 md:p-8">
         <div className="w-full max-w-4xl">
-          <div className="text-center mb-8">
-            <h1 className="text-4xl md:text-6xl font-bold text-white/90 mb-4">
-              Рулетка победителей
-            </h1>
-          </div>
+
 
           {currentPrize && (
             <div className="text-center mb-8">
