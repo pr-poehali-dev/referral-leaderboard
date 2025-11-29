@@ -1,0 +1,17 @@
+{
+  "tests": [
+    {
+      "name": "Test random processor",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "processor_used": "string",
+        "original_text": "string",
+        "processed_text": "string",
+        "request_id": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

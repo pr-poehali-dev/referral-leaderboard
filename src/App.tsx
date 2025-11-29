@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import ContestEnded from "./pages/ContestEnded";
 import Test from "./pages/Test";
 import Test2 from "./pages/Test2";
+import TestBackend from "./pages/TestBackend";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/contest-ended" element={<ContestEnded />} />
           <Route path="/test" element={<Test />} />
           <Route path="/test2" element={<Test2 />} />
+          <Route path="/test-backend" element={<TestBackend />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
