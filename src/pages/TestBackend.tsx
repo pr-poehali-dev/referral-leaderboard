@@ -66,12 +66,12 @@ const TestBackend = () => {
                   <strong>Использован процессор:</strong> {result.processor_used}
                 </div>
 
-                <div className="p-4 bg-gray-100 rounded-lg">
+                <div className="p-4 rounded-lg bg-gray-900">
                   <strong className="block mb-2">Исходный текст:</strong>
                   <pre className="whitespace-pre-wrap text-sm">{result.original_text}</pre>
                 </div>
 
-                <div className="p-4 bg-green-100 rounded-lg">
+                <div className="p-4 rounded-lg bg-slate-900">
                   <strong className="block mb-2">Обработанный текст:</strong>
                   <pre className="whitespace-pre-wrap text-sm">{result.processed_text}</pre>
                 </div>
