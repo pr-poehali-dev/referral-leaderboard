@@ -9,7 +9,61 @@
         "processor_used": "string",
         "original_text": "string",
         "processed_text": "string",
+        "available_processors": ["markdown", "text", "html", "json"],
+        "version": "1.0.0",
         "request_id": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test markdown processor",
+      "method": "GET",
+      "path": "/?processor=markdown",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "processor_used": "markdown",
+        "available_processors": ["markdown", "text", "html", "json"]
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test text processor",
+      "method": "GET",
+      "path": "/?processor=text",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "processor_used": "text"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test html processor",
+      "method": "GET",
+      "path": "/?processor=html",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "processor_used": "html"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test json processor",
+      "method": "GET",
+      "path": "/?processor=json",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "processor_used": "json"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Test unknown processor error",
+      "method": "GET",
+      "path": "/?processor=unknown",
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "string",
+        "available_processors": ["markdown", "text", "html", "json"]
       },
       "bodyMatcher": "partial"
     }
