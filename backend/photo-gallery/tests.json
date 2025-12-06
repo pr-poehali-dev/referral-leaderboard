@@ -1,0 +1,30 @@
+{
+  "tests": [
+    {
+      "name": "Get empty gallery",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "photos": []
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Upload photo",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "filename": "test.jpg",
+        "content_type": "image/jpeg",
+        "data": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "success": true,
+        "id": 1
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
