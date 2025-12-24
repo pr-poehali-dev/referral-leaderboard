@@ -1,0 +1,29 @@
+{
+  "tests": [
+    {
+      "name": "Get random numbers default",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "numbers": "array",
+        "count": 5,
+        "min": 1,
+        "max": 100
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get random numbers with params",
+      "method": "GET",
+      "path": "/?count=3&min=10&max=50",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "count": 3,
+        "min": 10,
+        "max": 50
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
