@@ -142,12 +142,30 @@ export default function WinnerRoulette() {
 
           {currentPrize && (
             <div className="text-center mb-8">
-              <div className="inline-flex items-center gap-3 backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 px-8 py-4">
-                <span className="text-5xl">{currentPrize.medal}</span>
-                <div className="text-left">
-                  <div className="text-2xl font-bold text-white">{currentPrize.label}</div>
-                  <div className="text-lg text-white/60">{currentPrize.energy.toLocaleString()} энергии</div>
-                </div>
+              <div className="flex flex-wrap justify-center gap-3">
+                {prizes.map((prize) => {
+                  const isWon = winners.some(w => w.place === prize.place);
+                  const isCurrent = currentPrize?.place === prize.place;
+                  
+                  return (
+                    <div 
+                      key={prize.place}
+                      className={`inline-flex items-center gap-3 backdrop-blur-xl rounded-2xl border px-6 py-3 transition-all duration-300 ${
+                        isCurrent 
+                          ? 'bg-white/15 border-white/30 scale-110' 
+                          : isWon 
+                            ? 'bg-green-500/10 border-green-400/30 opacity-60'
+                            : 'bg-white/5 border-white/10 opacity-40'
+                      }`}
+                    >
+                      <span className="text-4xl">{prize.medal}</span>
+                      <div className="text-left">
+                        <div className="text-lg font-bold text-white">{prize.label}</div>
+                        <div className="text-sm text-white/60">{prize.energy.toLocaleString()} энергии</div>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}
