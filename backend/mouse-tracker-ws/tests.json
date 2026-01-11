@@ -1,0 +1,37 @@
+{
+  "tests": [
+    {
+      "name": "WebSocket CONNECT",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "requestContext": {
+          "eventType": "CONNECT",
+          "connectionId": "test-conn-123"
+        }
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "message": "Connected"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Track coordinates via WebSocket",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "requestContext": {
+          "eventType": "MESSAGE",
+          "connectionId": "test-conn-123"
+        },
+        "body": "{\"action\": \"track\", \"x\": 150, \"y\": 250, \"sessionId\": \"ws-test\"}"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "action": "tracked"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
