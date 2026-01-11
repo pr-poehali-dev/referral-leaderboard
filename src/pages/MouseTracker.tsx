@@ -19,135 +19,137 @@ export default function MouseTracker() {
   const [coordinates, setCoordinates] = useState<Coordinate[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
   const [isTracking, setIsTracking] = useState(false);
-  const [isConnected, setIsConnected] = useState(false);
   const [sessionId] = useState(() => `session-${Date.now()}`);
+  const [pointsSent, setPointsSent] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
-  const wsRef = useRef<WebSocket | null>(null);
-  const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
+  const batchRef = useRef<Array<{ x: number; y: number }>>([]);
+  const sendTimeoutRef = useRef<NodeJS.Timeout>();
 
-  const WS_URL = 'wss://functions.poehali.dev/8a5b608e-a729-4986-940a-705c7fededf8';
+  const API_URL = 'https://functions.poehali.dev/8a5b608e-a729-4986-940a-705c7fededf8';
 
-  const connectWebSocket = useCallback(() => {
-    if (wsRef.current?.readyState === WebSocket.OPEN) {
-      return;
-    }
+  const sendBatch = useCallback(async () => {
+    if (batchRef.current.length === 0) return;
 
-    console.log('Connecting to WebSocket...');
-    const ws = new WebSocket(WS_URL);
+    const batch = [...batchRef.current];
+    batchRef.current = [];
 
-    ws.onopen = () => {
-      console.log('WebSocket connected');
-      setIsConnected(true);
-    };
+    try {
+      const lastPoint = batch[batch.length - 1];
+      
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          requestContext: {
+            eventType: 'MESSAGE',
+            connectionId: sessionId,
+          },
+          body: JSON.stringify({
+            action: 'track',
+            x: lastPoint.x,
+            y: lastPoint.y,
+            sessionId,
+          }),
+        }),
+      });
 
-    ws.onmessage = (event) => {
-      try {
-        const data = JSON.parse(event.data);
-        console.log('Received:', data);
+      const textData = await response.text();
+      const data = JSON.parse(textData);
 
-        if (data.action === 'tracked' && data.coordinates) {
-          setCoordinates(data.coordinates);
-        } else if (data.action === 'stats') {
-          setStats(data);
-        }
-      } catch (error) {
-        console.error('Failed to parse message:', error);
+      if (data.action === 'tracked' && data.coordinates) {
+        setCoordinates(data.coordinates);
+        setPointsSent(prev => prev + 1);
       }
-    };
-
-    ws.onerror = (error) => {
-      console.error('WebSocket error:', error);
-    };
-
-    ws.onclose = () => {
-      console.log('WebSocket disconnected');
-      setIsConnected(false);
-      wsRef.current = null;
-
-      reconnectTimeoutRef.current = setTimeout(() => {
-        console.log('Attempting to reconnect...');
-        connectWebSocket();
-      }, 3000);
-    };
-
-    wsRef.current = ws;
-  }, []);
-
-  const disconnectWebSocket = useCallback(() => {
-    if (reconnectTimeoutRef.current) {
-      clearTimeout(reconnectTimeoutRef.current);
-    }
-
-    if (wsRef.current) {
-      wsRef.current.close();
-      wsRef.current = null;
-    }
-    setIsConnected(false);
-  }, []);
-
-  const sendCoordinates = useCallback((x: number, y: number) => {
-    if (wsRef.current?.readyState === WebSocket.OPEN) {
-      const message = JSON.stringify({
-        action: 'track',
-        x,
-        y,
-        sessionId,
-      });
-      wsRef.current.send(message);
+    } catch (error) {
+      console.error('Failed to send coordinates:', error);
     }
   }, [sessionId]);
 
-  const loadStats = useCallback(() => {
-    if (wsRef.current?.readyState === WebSocket.OPEN) {
-      const message = JSON.stringify({
-        action: 'getStats',
-        sessionId,
+  const scheduleCoordinates = useCallback((x: number, y: number) => {
+    batchRef.current.push({ x, y });
+
+    if (sendTimeoutRef.current) {
+      clearTimeout(sendTimeoutRef.current);
+    }
+
+    sendTimeoutRef.current = setTimeout(() => {
+      sendBatch();
+    }, 50);
+  }, [sendBatch]);
+
+  const loadStats = useCallback(async () => {
+    try {
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          requestContext: {
+            eventType: 'MESSAGE',
+            connectionId: sessionId,
+          },
+          body: JSON.stringify({
+            action: 'getStats',
+            sessionId,
+          }),
+        }),
       });
-      wsRef.current.send(message);
+
+      const textData = await response.text();
+      const data = JSON.parse(textData);
+
+      if (data.action === 'stats') {
+        setStats(data);
+      }
+    } catch (error) {
+      console.error('Failed to load stats:', error);
     }
   }, [sessionId]);
-
-  useEffect(() => {
-    connectWebSocket();
-
-    return () => {
-      disconnectWebSocket();
-    };
-  }, [connectWebSocket, disconnectWebSocket]);
 
   useEffect(() => {
     if (!isTracking) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (containerRef.current && isConnected) {
+      if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
         const x = Math.round(e.clientX - rect.left);
         const y = Math.round(e.clientY - rect.top);
-        sendCoordinates(x, y);
+        
+        if (x >= 0 && y >= 0 && x <= rect.width && y <= rect.height) {
+          scheduleCoordinates(x, y);
+        }
       }
     };
 
     const container = containerRef.current;
     if (container) {
       container.addEventListener('mousemove', handleMouseMove);
-      return () => container.removeEventListener('mousemove', handleMouseMove);
+      return () => {
+        container.removeEventListener('mousemove', handleMouseMove);
+        if (sendTimeoutRef.current) {
+          clearTimeout(sendTimeoutRef.current);
+        }
+      };
     }
-  }, [isTracking, isConnected, sendCoordinates]);
+  }, [isTracking, scheduleCoordinates]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 pt-20 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">
-            🖱️ Mouse Tracker WebSocket
+            🖱️ Mouse Tracker (HTTP Batching)
           </h1>
           <p className="text-gray-300">
-            Отслеживание координат мыши через WebSocket в реальном времени
+            Отслеживание координат мыши с батчингом и сохранением в БД
           </p>
           <div className="mt-4 inline-flex items-center gap-2 bg-white/10 px-4 py-2 rounded-lg">
-            <div className={`w-3 h-3 rounded-full ${isConnected ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`} />
+            <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
             <span className="text-white text-sm">
-              {isConnected ? 'WebSocket подключен' : 'Подключение...'}
+              Отправлено точек: {pointsSent}
             </span>
           </div>
         </div>
@@ -159,11 +161,10 @@ export default function MouseTracker() {
                 <h2 className="text-xl font-semibold text-white">Зона отслеживания</h2>
                 <button
                   onClick={() => setIsTracking(!isTracking)}
-                  disabled={!isConnected}
                   className={`px-4 py-2 rounded-lg font-semibold transition-all ${
                     isTracking
                       ? 'bg-red-500 hover:bg-red-600 text-white'
-                      : 'bg-green-500 hover:bg-green-600 text-white disabled:bg-gray-500 disabled:cursor-not-allowed'
+                      : 'bg-green-500 hover:bg-green-600 text-white'
                   }`}
                 >
                   {isTracking ? 'Остановить' : 'Начать отслеживание'}
@@ -180,19 +181,19 @@ export default function MouseTracker() {
               >
                 {isTracking && (
                   <div className="absolute top-2 left-2 text-sm text-white/80 font-mono bg-black/40 px-3 py-1 rounded">
-                    Двигайте мышью здесь (WebSocket)
+                    Двигайте мышью здесь (HTTP Batching 50ms)
                   </div>
                 )}
                 
                 {coordinates.slice(0, 30).map((coord, idx) => (
                   <div
                     key={coord.id}
-                    className="absolute w-2 h-2 bg-blue-400 rounded-full animate-ping"
+                    className="absolute w-2 h-2 bg-blue-400 rounded-full"
                     style={{
                       left: `${coord.x}px`,
                       top: `${coord.y}px`,
                       opacity: 1 - idx * 0.03,
-                      animationDuration: `${1 + idx * 0.05}s`,
+                      transition: 'all 0.05s ease-out',
                     }}
                   />
                 ))}
@@ -200,7 +201,10 @@ export default function MouseTracker() {
 
               <div className="mt-4 text-sm text-gray-300 space-y-1">
                 <p>Session ID: <span className="font-mono text-blue-400">{sessionId}</span></p>
-                <p>Protocol: <span className="font-mono text-green-400">WebSocket (wss://)</span></p>
+                <p>Protocol: <span className="font-mono text-yellow-400">HTTP POST (batched every 50ms)</span></p>
+                <p className="text-xs text-gray-500">
+                  * Cloud Functions не поддерживают нативный WebSocket, используется оптимизированный HTTP батчинг
+                </p>
               </div>
             </div>
           </div>
@@ -236,8 +240,7 @@ export default function MouseTracker() {
                 <h3 className="text-lg font-semibold text-white">Статистика</h3>
                 <button
                   onClick={loadStats}
-                  disabled={!isConnected}
-                  className="p-2 hover:bg-white/10 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="p-2 hover:bg-white/10 rounded-lg transition-all"
                 >
                   <Icon name="RefreshCw" size={20} className="text-white" />
                 </button>
