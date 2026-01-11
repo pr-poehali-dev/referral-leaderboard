@@ -1,0 +1,15 @@
+{
+  "tests": [
+    {
+      "name": "Get random planet",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "planet": "string",
+        "total_planets": 8
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}

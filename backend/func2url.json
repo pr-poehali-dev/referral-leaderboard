@@ -1,4 +1,7 @@
 {
+  "numbers-api": "https://functions.poehali.dev/f67b75e4-ff2e-47cb-a907-3a1e59e11a38",
+  "planets": "https://functions.poehali.dev/102d91a6-acf4-411a-a306-6e53a7e61bcc",
+  "random-numbers": "https://functions.poehali.dev/2adda806-d073-476d-8421-1574c8f719f4",
   "photo-gallery": "https://functions.poehali.dev/2c130d56-19b9-42d8-a731-3ae0e2c8c4b3",
   "test-structure": "https://functions.poehali.dev/fbb75c12-b345-46c8-a8ed-c8cab70ea408",
   "test-function": "https://functions.poehali.dev/de80e27e-d87c-4a11-9db5-a7aecc1d8747"
