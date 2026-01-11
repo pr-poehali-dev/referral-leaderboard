@@ -1,0 +1,35 @@
+{
+  "tests": [
+    {
+      "name": "Track mouse coordinates",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "action": "track",
+        "x": 100,
+        "y": 200,
+        "sessionId": "test-session"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "action": "tracked",
+        "total": 1
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Get statistics",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "action": "getStats",
+        "sessionId": "test-session"
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "action": "stats"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
