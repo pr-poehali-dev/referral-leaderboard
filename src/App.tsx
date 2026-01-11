@@ -10,6 +10,7 @@ import Test from "./pages/Test";
 import Test2 from "./pages/Test2";
 import TestBackend from "./pages/TestBackend";
 import PhotoGallery from "./pages/PhotoGallery";
+import TelegramCallback from "./pages/TelegramCallback";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/test2" element={<Test2 />} />
           <Route path="/test-backend" element={<TestBackend />} />
           <Route path="/photo-gallery" element={<PhotoGallery />} />
+          <Route path="/auth/telegram/callback" element={<TelegramCallback />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
