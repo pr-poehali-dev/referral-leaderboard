@@ -30,12 +30,10 @@ export default function MouseTracker() {
   const sendBatch = useCallback(async () => {
     if (batchRef.current.length === 0) return;
 
-    const batch = [...batchRef.current];
+    const lastPoint = batchRef.current[batchRef.current.length - 1];
     batchRef.current = [];
 
     try {
-      const lastPoint = batch[batch.length - 1];
-      
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
