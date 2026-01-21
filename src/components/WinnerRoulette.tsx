@@ -183,7 +183,7 @@ export default function WinnerRoulette() {
             ) : (
               <div className="text-center py-12">
                 <Icon name="Sparkles" size={64} className="mx-auto mb-4 text-white/30" />
-                <p className="text-2xl text-white/50">Нажмите кнопку для розыгрыша</p>
+                <p className="text-2xl text-white/50">Нажмите кнопку для розыгрыша!</p>
               </div>
             )}
           </div>
