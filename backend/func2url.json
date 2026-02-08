@@ -1,4 +1,5 @@
 {
+  "get-civ5-religion": "https://functions.poehali.dev/e19e3a20-d1e3-4bb0-b3df-c2e743b39039",
   "random-number": "https://functions.poehali.dev/93720496-cd12-4a0d-a6a1-386f0cf2064d",
   "mouse-tracker-ws": "https://functions.poehali.dev/8a5b608e-a729-4986-940a-705c7fededf8",
   "mouse-tracker": "https://functions.poehali.dev/dafcdddd-0f6f-4ce4-8646-4465da3c52f6",
@@ -7,7 +8,5 @@
   "numbers-api": "https://functions.poehali.dev/f67b75e4-ff2e-47cb-a907-3a1e59e11a38",
   "planets": "https://functions.poehali.dev/102d91a6-acf4-411a-a306-6e53a7e61bcc",
   "random-numbers": "https://functions.poehali.dev/2adda806-d073-476d-8421-1574c8f719f4",
-  "photo-gallery": "https://functions.poehali.dev/2c130d56-19b9-42d8-a731-3ae0e2c8c4b3",
-  "test-structure": "https://functions.poehali.dev/fbb75c12-b345-46c8-a8ed-c8cab70ea408",
-  "test-function": "https://functions.poehali.dev/de80e27e-d87c-4a11-9db5-a7aecc1d8747"
+  "test-structure": "https://functions.poehali.dev/fbb75c12-b345-46c8-a8ed-c8cab70ea408"
 }
