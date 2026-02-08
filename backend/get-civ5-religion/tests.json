@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Get random Civ5 religion",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {
+        "religion": "string"
+      },
+      "bodyMatcher": "partial"
+    }
+  ]
+}
